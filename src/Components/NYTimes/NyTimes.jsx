@@ -6,6 +6,8 @@ const NyTimes = () => {
   const [articles, setArticles] = useState([]);
   const navigate = useNavigate();
 
+  const backendUrl = process.env.REACT_APP_API_URL; // Use the backend URL from the environment variable
+
   const handleInputChange = (event) => {
     setKeyword(event.target.value);
   };
@@ -15,7 +17,7 @@ const NyTimes = () => {
       event.preventDefault();
     }
 
-    fetch(`http://localhost:3000/api/search?keyword=${keyword}`)
+    fetch(`${backendUrl}/api/search?keyword=${keyword}`)
       .then((response) => {
         if (!response.ok) throw new Error("Error fetching data");
         return response.json();
